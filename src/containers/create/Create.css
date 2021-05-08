@@ -1,0 +1,25 @@
+.Create{
+  margin: 0 auto;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .Home{
+    font-size: 0.8rem;
+  }
+  .toggleButton {
+    overflow: hidden;
+    background: none;
+    border: none;
+    position: absolute;
+    bottom: 4%;
+    right: 10%;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 0;
+    text-align: center;
+    border-bottom: none;
+    text-decoration: none;
+    z-index: 100;
+  }
+
+}
