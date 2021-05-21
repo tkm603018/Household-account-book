@@ -21,16 +21,17 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
-    display: 'flex',
+    display: 'flex',
     alignItems: 'center',
+    justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+
   },
   content: {
     flexGrow: 1,
-    // padding: theme.spacing(1),
+    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
