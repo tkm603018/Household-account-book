@@ -8,7 +8,7 @@ import BarChart from '../components/charts/BarChart'
 import LineChart from '../components/charts/LineChart'
 import Button from '@material-ui/core/Button';
 
-import { Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 const Home = (body) => {
   return (
     <BodyContainer.Provider>
@@ -45,16 +45,15 @@ const HomeRender = (body) => {
           maxWidth: `95vw`, height:`auto`,
         }}>
         <h1>{`先月(${new Date().getMonth()===0? new Date().getFullYear()-1:new Date().getFullYear()}年${new Date().getMonth()===0?new Date().getMonth()+12:new Date().getMonth()}月)の記録`}</h1>
-        <div style={{padding: `0 0 5% 0`}}>
+        <Box m={1}>
           <Button
             variant="outlined"
-            // color="primary"
             size="large"
             href={"/itemscreate/" + new Date().getFullYear() + new Date().getMonth()}
           >
           リストへ
           </Button>
-        </div>
+        </Box>
         <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height:`auto`,}}><PieChart items={data}/></div>
         <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height: `auto`, }}><BarChart items={data} /></div>
         {/* <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height:`auto`,}}><LineChart items={data}/></div> */}
