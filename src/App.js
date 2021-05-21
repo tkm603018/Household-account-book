@@ -24,14 +24,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
+    // padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
 
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -95,10 +95,11 @@ const App = () => {
         bodies={bodies}
         handleDrawerClose={handleDrawerClose}
       />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+          style={open ? {padding: '50px'}:null}
       >
         <div className={classes.drawerHeader} />
         <Router>
