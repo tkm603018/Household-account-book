@@ -1,13 +1,10 @@
 import React from 'react';
-
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-
 import {
-  Drawer, Divider, List, ListItem, ListItemIcon,
-  ListItemText, Toolbar, AppBar, Typography, IconButton,
-  CssBaseline, Button, Link
+  Box, Drawer, Divider, ListItem,
+  Toolbar, AppBar, Typography, IconButton,
+  Button, Switch, Tooltip, Link
 } from '@material-ui/core';
 
 import {
@@ -22,7 +19,7 @@ import {
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    flexGrow: 1,
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -60,25 +57,21 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
 }));
-const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies }) => {
+const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies, themeStatus, handleThemeChange }) => {
   const classes = useStyles();
   const theme = useTheme();
-  // const [open, setOpen] = React.useState(false);
 
   return (
-    <div className="Header-main"
-      // style={{ position: "fixed", zIndex: 100, flexGrow: 1 }}
-    >
-      <CssBaseline />
+    <div className={classes.root}>
       <AppBar
-        position="absolute"
+        position="fixed"
+        color="inherit"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -86,14 +79,8 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Button
-            title="Homeへ戻る"
-            // color="inherit"
-            href="/"
-            >
-            <Typography variant="h6" noWrap>
-              家計簿
-            </Typography>
+          <Button href="/" components={Link}>
+            <Box fontWeight="bold" fontSize="1.5rem">家計簿</Box>
           </Button>
         </Toolbar>
         <Box display="flex" overflow="scroll">
@@ -124,12 +111,12 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies }) => {
         <ListItem button >
           <Button
             title="年月を追加する"
-            color="primary"
-            variant="outlined"
+            variant="contained"
+            color="secondary"
             href="/BodiesCreate"
             fullWidth
           >
-            Add
+            <Box fontWeight="bold">追加する</Box>
           </Button>
         </ListItem>
         <Box display="block" overflow="scroll">
@@ -147,17 +134,19 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies }) => {
           }
         </Box>
         <Divider />
-        {/* <List>
-            <ListItem button>
-              <ListItemIcon><MenuIcon /></ListItemIcon>
-                <Button
-                  href="/setting"
-                >setting
-                </Button>
-            </ListItem>
-        </List> */}
+        <ListItem>
+          <Tooltip title="テーマを切り替えます"  placement="right">
+            <Switch
+              checked={themeStatus}
+              onChange={handleThemeChange}
+              name="Dark-Mode"
+              inputProps={{ 'aria-label': 'default checkbox' }}
+            />
+          </Tooltip>
+          テーマを変更する
+        </ListItem>
       </Drawer>
-        </div>
+    </div>
   )
 }
 export default Header;

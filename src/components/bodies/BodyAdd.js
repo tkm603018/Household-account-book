@@ -34,11 +34,11 @@ const BodyAdd = ({ bodies }) => {
             <br></br>
             <Button
               type="submit"
-              variant="outlined"
+              variant="contained"
               color="primary"
               fullWidth
             >
-              Add Body
+              追加する
             </Button>
           </form>
         </Grid>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Charts.css'
+// import './Charts.css'
 import { DB } from '../firebase'
 import { BodyContainer } from '../actions/body';
 
@@ -38,16 +38,22 @@ const HomeRender = (body) => {
   
   return (
     <Grid className="Home">
-      <div className="home"
+      <Box className="home" m={2}
         style={{
           // paddingLeft: window.innerWidth * 0.0805,
-          margin: `${window.innerWidth < 768 ? '17%' : '7%'} auto`,
-          maxWidth: `95vw`, height:`auto`,
+          // margin: `${window.innerWidth < 768 ? '17%' : '7%'} auto`,
+          // maxWidth: `95vw`, height:`auto`,
         }}>
-        <h1>{`先月(${new Date().getMonth()===0? new Date().getFullYear()-1:new Date().getFullYear()}年${new Date().getMonth()===0?new Date().getMonth()+12:new Date().getMonth()}月)の記録`}</h1>
+        <Box fontWeight="bold" fontSize="1.5rem">
+          {`先月(${new Date().getMonth() === 0 ?
+            new Date().getFullYear() - 1 :
+            new Date().getFullYear()}年${new Date().getMonth() === 0 ?
+              new Date().getMonth() + 12 : new Date().getMonth()}月)の記録`}
+        </Box>
         <Box m={1}>
           <Button
             variant="outlined"
+            color="inherit"
             size="large"
             href={"/itemscreate/" + new Date().getFullYear() + new Date().getMonth()}
           >
@@ -57,7 +63,7 @@ const HomeRender = (body) => {
         <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height:`auto`,}}><PieChart items={data}/></div>
         <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height: `auto`, }}><BarChart items={data} /></div>
         {/* <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height:`auto`,}}><LineChart items={data}/></div> */}
-      </div>
+      </Box>
     </Grid>
   )
 }
