@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Box, Button } from '@material-ui/core';
+import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Box, Button, Typography } from '@material-ui/core';
 import { DB } from '../../firebase'
 import { BodyContainer } from '../../actions/body';
 
@@ -33,14 +33,14 @@ const ItemList = ({ items }) => {
           <TableHead>
             <TableRow>
               <TableCell align="center">EDIT</TableCell>
-              <TableCell align="center">date</TableCell>
+              <TableCell align="center">DATE</TableCell>
               <TableCell align="center"></TableCell>
               <TableCell align="center"></TableCell>
-              <TableCell align="center">title</TableCell>
+              <TableCell align="center">TITLE</TableCell>
               <TableCell align="center"></TableCell>
               <TableCell align="center"></TableCell>
-              <TableCell align="center">category</TableCell>
-              <TableCell align="center">price</TableCell>
+              <TableCell align="center">CATEGORY</TableCell>
+              <TableCell align="center">PRICE</TableCell>
               <TableCell align="center">DELETE</TableCell>
             </TableRow>
           </TableHead>
@@ -50,6 +50,8 @@ const ItemList = ({ items }) => {
                   <TableCell align="center">
                     <Button
                       size="small"
+                      variant="contained"
+                      color="primary"
                       selected={container.selectedItem}
                       onClick={() => {
                         container.ItemSelect(item)
@@ -58,7 +60,6 @@ const ItemList = ({ items }) => {
                         textDecoration: item.key === container.selectedItem ?
                         'line-through' : 'none'
                       }}
-                      variant="outlined" color="primary"
                       title={item.key}
                     >
                       {item.key.substr(0, 7)}...</Button>
@@ -70,11 +71,11 @@ const ItemList = ({ items }) => {
                   <TableCell align="center">
                     <Button
                       size="small"
-                      style={{ marginLeft: 10, fontSize: 8, color: 'red' }}
+                      // style={{ marginLeft: 10, fontSize: 8, color: 'red' }}
                       onClick={() => container.ItemDelete(item)}
-                      variant="outlined" color="secondary"
+                      variant="contained" color="secondary"
                     >
-                      Delete
+                      削除する
                 </Button>
                   </TableCell>
                 </TableRow>

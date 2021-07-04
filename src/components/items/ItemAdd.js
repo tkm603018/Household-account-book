@@ -129,11 +129,11 @@ const ItemAdd = () => {
             <br></br>
             <Button
               type="submit"
-              variant="outlined"
+              variant="contained"
               color="primary"
               fullWidth
             >
-              Add Item
+              追加する
             </Button>
           </form>
         </Grid>

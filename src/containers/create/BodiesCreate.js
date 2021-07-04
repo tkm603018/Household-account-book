@@ -37,7 +37,7 @@ const BodiesCreate = ({ bodies }) => {
                       size="large"
                       value={toggle}
                       onClick={() => { setToggle(!toggle) }}
-                    >AddItem
+                    >新しい月を追加
                     </Button>
                   </div>
                   {toggle ? <BodyAdd bodies={bodies} /> : null}

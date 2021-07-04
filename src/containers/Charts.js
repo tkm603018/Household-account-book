@@ -52,7 +52,7 @@ const ChartRender = (body) => {
           size="large"
           href={"/itemscreate/" + body.link}
           >
-          ADD
+          編集する
           </Button>
         </div>
         <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height: `auto`, }}><PieChart items={data} /></div>

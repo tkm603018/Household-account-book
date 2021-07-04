@@ -1,37 +1,34 @@
 import React from 'react';
 import clsx from 'clsx';
-
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import {CssBaseline} from '@material-ui/core'
 import { DB } from './firebase'
 import BodiesCreate from './containers/create/BodiesCreate'
 import ItemsCreate from './containers/create/ItemsCreate'
 import Charts from './containers/Charts'
-import Setting from './containers/Setting'
 import Header from './components/header/Header'
-import Home from './containers/Home';
-import './App.css'
-
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import * as colors from "@material-ui/core/colors";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import Home from './containers/Home'
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    // padding: theme.spacing(0, 1),
+    padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
 
   },
   content: {
     flexGrow: 1,
-    // padding: theme.spacing(3),
+    paddingTop: theme.spacing(4),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -49,18 +46,20 @@ const useStyles = makeStyles((theme) => ({
 const ref = DB.ref('bodies');
 
 const App = () => {
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: colors.blue[800],
-      },
-      type: "dark",
-    },
-  });
-
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   const [bodies, setBodies] = React.useState()
+  const [themeStatus, setThemeStatus] = React.useState(true)
+
+  const muiTheme = createMuiTheme({
+    palette: {
+      type: themeStatus === true ? 'dark': 'light',
+    },
+  });
+
+  const handleThemeChange = (e) => {
+    setThemeStatus(e.target.checked)
+  }
 
     const handleDrawerOpen = () => {
     setOpen(true);
@@ -84,52 +83,49 @@ const App = () => {
   },[bodies])
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-    <div className="App"
-      style={{ display: `flex`, maxWidth: `${window.innerWidth*0.95}`, height: `auto` }}
-    >
-      <Header
-        open={open}
-        handleDrawerOpen={handleDrawerOpen}
-        bodies={bodies}
-        handleDrawerClose={handleDrawerClose}
-      />
+    <div className={classes.root}>
+      <ThemeProvider theme={muiTheme} className="Header-main">
+        <CssBaseline />
+        <Header
+          open={open}
+          handleDrawerOpen={handleDrawerOpen}
+          bodies={bodies}
+          handleDrawerClose={handleDrawerClose}
+          themeStatus={themeStatus}
+          handleThemeChange={handleThemeChange}
+        />
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: open,
           })}
-          style={open ? {padding: '50px'}:null}
-      >
-        <div className={classes.drawerHeader} />
-        <Router>
-          <Switch>
-            {/* <Route exact path='/setting' component={Setting} /> */}
-            <Route exact path='/bodiescreate' component={() => BodiesCreate({ bodies })} />
-            {bodies && bodies.map((body, i) => (
-              <Route key={i} path={"/itemscreate/" + body.link} component={() => ItemsCreate(body)}
-              />
-            ))
-            }
-            {bodies && bodies.map((body, i) => (
-              <Route key={i} path={"/charts/" + body.link} component={() => Charts(body)} />
-            ))
-            }
-            {bodies && bodies.map((body, i) => (
-              <Route key={i} exact path='/' component={() => Home(body)} />
-            ))
-            }
-          </Switch>
-        </Router>
-        <center>
-          <span style={{ lineHeight: `2.0rem` }}>
-            © {new Date().getFullYear()}, All rights reserved Tkmmm.
-          </span>
-        </center>
-      </main>
-      </div>
-    </ThemeProvider>
-
+        >
+          <div className={classes.drawerHeader} />
+          <Router>
+            <Switch>
+              <Route exact path='/bodiescreate' component={() => BodiesCreate({ bodies })} />
+              {bodies && bodies.map((body, i) => (
+                <Route key={i} path={"/itemscreate/" + body.link} component={() => ItemsCreate(body)}
+                />
+              ))
+              }
+              {bodies && bodies.map((body, i) => (
+                <Route key={i} path={"/charts/" + body.link} component={() => Charts(body)} />
+              ))
+              }
+              {bodies && bodies.map((body, i) => (
+                <Route key={i} exact path='/' component={() => Home(body)} />
+              ))
+              }
+            </Switch>
+          </Router>
+          <footer>
+            <center style={{ lineHeight: `2.0rem` }}>
+              © {new Date().getFullYear()}, All rights reserved Tkmmm.
+            </center>
+          </footer>
+        </main>
+      </ThemeProvider>
+    </div>
   )
 }
 

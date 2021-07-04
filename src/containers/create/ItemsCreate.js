@@ -31,7 +31,7 @@ const ItemsCreate = (body) => {
                       size="large"
                       value={toggle}
                       onClick={() => { setToggle(!toggle) }}
-                    >AddItem
+                    >記録する
                     </Button>
                   </div>
                   {toggle ? <ItemAdd /> : null}
