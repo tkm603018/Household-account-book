@@ -87,13 +87,13 @@ const ItemAdd = () => {
               />
             </Grid>
             <Grid item >
-              <FormControl fullWidth variant="filled" style={{background: `#212121` }}>
+              <FormControl fullWidth variant="filled" >
               <InputLabel id="category">category</InputLabel>
               <Select
                   labelId="category"
                   variant="filled"
-                  color="primary"
-                  input={<Input style={{ lineHeight: `2.0rem`, padding: `6% 10% 6% 5%`, background: `#212121` }}/>}
+                  color="secondary"
+                  input={<Input style={{ lineHeight: `2.0rem`, padding: `6% 10% 6% 5%` }}/>}
                   value={container.inputCategory}
                   onChange={container.handleCategory}
                   fullWidth

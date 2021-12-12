@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Box, Drawer, Divider, ListItem,
-  Toolbar, AppBar, Typography, IconButton,
+  Toolbar, AppBar, IconButton,
   Button, Switch, Tooltip, Link
 } from '@material-ui/core';
 
@@ -13,7 +13,9 @@ import {
   MoveToInbox as InboxIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
-  AddCircle as　AddCircleIcon
+  AddCircle as AddCircleIcon,
+  MoreHoriz as MoreHorizIcon,
+  MoreVert as MoreVertIcon
 } from '@material-ui/icons';
 
 const drawerWidth = 240;
@@ -84,13 +86,17 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies, themeStatus
           </Button>
         </Toolbar>
         <Box display="flex" overflow="scroll">
-        <Button href="/BodiesCreate"><AddCircleIcon color="inherit" /></Button>
-          {!bodies ? null : bodies.slice(0).reverse().map((body, i) => (
+          <Tooltip title="月毎の家計簿へ"  placement="top-end">
+            <Button href="/BodiesCreate"><AddCircleIcon color="inherit" /></Button>
+          </Tooltip>
+          
+          {!bodies ? null : bodies.sort((a, b) => b.link - a.link).slice(0, bodies.length < 9 ? bodies.length : 9).map((body, i) => (
             <Button key={i} color="inherit" href={"/charts/" + body.link}>
               {body.link.substr(0, 4)}/{body.link.slice(4)}
             </Button>
           ))
           }
+          {bodies && bodies.length >= 9 && <Box mt={1}><MoreHorizIcon color="inherit" /></Box>}
         </Box>
       </AppBar>
       <Drawer
@@ -120,11 +126,11 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies, themeStatus
           </Button>
         </ListItem>
         <Box display="block" overflow="scroll">
-          {!bodies ? null : bodies.slice(0).reverse().map((body, i) => (
+          {!bodies ? null : bodies.sort((a, b) => b.link - a.link).slice(0, bodies.length < 9 ? bodies.length : 9).map((body, i) => (
             <ListItem button key={i}>
               <Button
                 variant="outlined"
-                href={"/charts/" + body.link}
+                href={"/itemscreate/" + body.link}
                 fullWidth
               >
                 {body.link.substr(0, 4)}年{body.link.slice(4)}月
@@ -133,8 +139,13 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies, themeStatus
           ))
           }
         </Box>
-        <Divider />
+        {bodies && bodies.length >= 9 &&
+          <ListItem style={{justifyContent: 'center'}} >
+            <MoreVertIcon color="inherit" />
+          </ListItem>
+        }
         <ListItem>
+        <Divider />
           <Tooltip title="テーマを切り替えます"  placement="right">
             <Switch
               checked={themeStatus}
@@ -144,6 +155,9 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose, bodies, themeStatus
             />
           </Tooltip>
           テーマを変更する
+        </ListItem>
+        <ListItem>
+          © {new Date().getFullYear()}, All rights reserved Tkm.
         </ListItem>
       </Drawer>
     </div>
