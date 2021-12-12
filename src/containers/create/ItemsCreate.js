@@ -22,21 +22,29 @@ const ItemsCreate = (body) => {
             }}
           >
             <Grid item >
+              <Box m={2}>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  href={"/charts/" + body.link}
+                  fullWidth
+                >チャートへ
+                </Button>
+              </Box>
               {window.innerWidth < 768 ?
                 <>
-                  <div>
+                  <Box m={2}>
                     <Button
                       variant="outlined"
-                      // color="primary"
                       size="large"
                       value={toggle}
                       onClick={() => { setToggle(!toggle) }}
                     >記録する
                     </Button>
-                  </div>
+                  </Box>
                   {toggle ? <ItemAdd /> : null}
                   <br></br>
-                  </>
+                </>
                 :
                 <ItemAdd />
               }
