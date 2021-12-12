@@ -1,14 +1,13 @@
 import React from 'react';
-// import './Charts.css'
 import { DB } from '../firebase'
 import { BodyContainer } from '../actions/body';
 
 import PieChart from '../components/charts/PieChart'
 import BarChart from '../components/charts/BarChart'
-import LineChart from '../components/charts/LineChart'
-import Button from '@material-ui/core/Button';
+// import LineChart from '../components/charts/LineChart'
 
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, Button } from '@material-ui/core';
+
 const Home = (body) => {
   return (
     <BodyContainer.Provider>
@@ -38,7 +37,8 @@ const HomeRender = (body) => {
   
   return (
     <Grid className="Home">
-      <Box className="home" m={2}
+      {data && data.length > 0 ? 
+      <Box className="home" m={2} mt={3}
         style={{
           // paddingLeft: window.innerWidth * 0.0805,
           // margin: `${window.innerWidth < 768 ? '17%' : '7%'} auto`,
@@ -60,10 +60,12 @@ const HomeRender = (body) => {
           リストへ
           </Button>
         </Box>
-        <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height:`auto`,}}><PieChart items={data}/></div>
-        <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height: `auto`, }}><BarChart items={data} /></div>
+        <Box mt={2} style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height: `auto`, }}><PieChart items={data} /></Box>
+        <Box mt={2} style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height: `auto`, }}><BarChart items={data} /></Box>
         {/* <div style={{ display: `inline-flex`, padding: `0.5% 0.5% 0.5% 0.5% `, height:`auto`,}}><LineChart items={data}/></div> */}
-      </Box>
+        </Box>
+        : <Box my={5}><h1>今月は未記入です。</h1></Box>
+        }
     </Grid>
   )
 }
