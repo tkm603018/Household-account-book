@@ -1,7 +1,6 @@
 import React from 'react'
 import { createContainer } from 'unstated-next';
 import { DB } from '../firebase'
-const ref = DB.ref('bodies');
 
 export const Body = () => {
   const [inputYear, setInputYear] = React.useState(new Date().getFullYear())
@@ -222,7 +221,6 @@ export const Body = () => {
     console.log('newBody', newBody)
     setItems(items)
     BodyStore(newBody)
-
     setBodies(newBody)
   }
 
@@ -266,26 +264,25 @@ export const Body = () => {
   // // EDIT_TASK
   const BodyEdit = () => {
     var confirm = window.confirm("ほんとに更新しますか？")
-    if (confirm) {
-    if (selectedBody) {
-      console.log("call Edit")
-      const updateBody = {
-        key: selectedBody,
-        link: inputLink,
-        items: items,
-      };
-      selectedBody && key && DB.ref('bodies').child(selectedBody).set(JSON.stringify(updateBody)).then(res => {
-      }).catch(error => {
-        console.log(error)
-      })
-      setKey(null)
 
-      setSelectedBody(false)
-    }
-    } else {
+    if (confirm) {
+      if (selectedBody) {
+        console.log("call Edit")
+        const updateBody = {
+          key: selectedBody,
+          link: inputLink,
+          items: items,
+        };
+        
+        selectedBody && key && DB.ref('bodies').child(selectedBody).set(JSON.stringify(updateBody)).then(res => {
+        }).catch(error => {
+          console.log(error)
+        })
+        setKey(null)
+        setSelectedBody(false)
+      }
     }
   }
-
 
   return {
     inputYear, inputMonth, inputDay, inputText, inputCategory, inputCategories, inputNumber,
