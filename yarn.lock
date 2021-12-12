@@ -1537,7 +1537,6 @@
     "jest-resolve" "^26.6.2"
     "jest-util" "^26.6.2"
     "jest-worker" "^26.6.2"
-    "node-notifier" "^8.0.0"
     "slash" "^3.0.0"
     "source-map" "^0.6.0"
     "string-length" "^4.0.1"
@@ -3592,7 +3591,6 @@
     "anymatch" "^2.0.0"
     "async-each" "^1.0.1"
     "braces" "^2.3.2"
-    "fsevents" "^1.2.7"
     "glob-parent" "^3.1.0"
     "inherits" "^2.0.3"
     "is-binary-path" "^1.0.0"
@@ -5699,7 +5697,7 @@
     "locate-path" "^5.0.0"
     "path-exists" "^4.0.0"
 
-"firebase@^7.14.6":
+"firebase@^7.24.0":
   "integrity" "sha512-j6jIyGFFBlwWAmrlUg9HyQ/x+YpsPkc/TTkbTyeLwwAJrpAmmEHNPT6O9xtAnMV4g7d3RqLL/u9//aZlbY4rQA=="
   "resolved" "https://registry.npmjs.org/firebase/-/firebase-7.24.0.tgz"
   "version" "7.24.0"
@@ -7166,7 +7164,6 @@
     "@types/node" "*"
     "anymatch" "^3.0.3"
     "fb-watchman" "^2.0.0"
-    "fsevents" "^2.1.2"
     "graceful-fs" "^4.2.4"
     "jest-regex-util" "^26.0.0"
     "jest-serializer" "^26.6.2"
@@ -10190,7 +10187,6 @@
     "eslint-webpack-plugin" "^2.1.0"
     "file-loader" "6.1.1"
     "fs-extra" "^9.0.1"
-    "fsevents" "^2.1.3"
     "html-webpack-plugin" "4.5.0"
     "identity-obj-proxy" "3.0.0"
     "jest" "26.6.0"
@@ -12433,10 +12429,8 @@
   "resolved" "https://registry.npmjs.org/watchpack/-/watchpack-1.7.5.tgz"
   "version" "1.7.5"
   dependencies:
-    "chokidar" "^3.4.1"
     "graceful-fs" "^4.1.2"
     "neo-async" "^2.5.0"
-    "watchpack-chokidar2" "^2.0.1"
   optionalDependencies:
     "chokidar" "^3.4.1"
     "watchpack-chokidar2" "^2.0.1"
