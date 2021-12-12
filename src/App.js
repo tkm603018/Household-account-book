@@ -10,6 +10,7 @@ import ItemsCreate from './containers/create/ItemsCreate'
 import Charts from './containers/Charts'
 import Header from './components/header/Header'
 import Home from './containers/Home'
+import { usePersist } from './components/usePersist'
 
 const drawerWidth = 240;
 
@@ -49,7 +50,7 @@ const App = () => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   const [bodies, setBodies] = React.useState()
-  const [themeStatus, setThemeStatus] = React.useState(true)
+  const [themeStatus, setThemeStatus] = usePersist('themeStatus', true)
 
   const muiTheme = createMuiTheme({
     palette: {
@@ -118,11 +119,6 @@ const App = () => {
               }
             </Switch>
           </Router>
-          <footer>
-            <center style={{ lineHeight: `2.0rem` }}>
-              © {new Date().getFullYear()}, All rights reserved Tkmmm.
-            </center>
-          </footer>
         </main>
       </ThemeProvider>
     </div>
