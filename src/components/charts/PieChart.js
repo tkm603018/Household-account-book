@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Box, List } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { PieChart as Chart, Pie, ResponsiveContainer, Cell, Legend, Tooltip } from 'recharts';
 
 const PieChart = ({ items }) => {
@@ -18,16 +18,16 @@ const PieChart = ({ items }) => {
     "#ffffff"
   ];
   
-  let a = [
-    { category: "食費", number: 0},
+  let a = React.useMemo(() => [
+    { category: "食費", number: 0 },
     { category: "日用品", number: 0},
     { category: "交通費", number: 0},
     { category: "趣味・娯楽", number: 0},
     { category: "服・美容", number: 0},
     { category: "健康・医療", number: 0},
     { category: "大学・部費・教材", number: 0},
-    { category: "水道・光熱費", number: 0}
-  ]
+    { category: "水道・光熱費", number: 0 }
+  ], [])
   
   React.useEffect(() => {
     if (!data && items) {
@@ -46,26 +46,26 @@ const PieChart = ({ items }) => {
     }
   }, [data, a, items])
 
-  const RADIAN = Math.PI / 180;
+  // const RADIAN = Math.PI / 180;
   
-  const renderCustomizedLabel = ({cx,cy,midAngle,innerRadius,outerRadius,percent,index}) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.9;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  // const renderCustomizedLabel = ({cx,cy,midAngle,innerRadius,outerRadius,percent,index}) => {
+  //   const radius = innerRadius + (outerRadius - innerRadius) * 0.9;
+  //   const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  //   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-    return (
-      <text x={x} y={y} fill="#212121"
-        textAnchor={x > cx ? "start" : "end"} dominantBaseline="central"
-        style={{
-          fontSize: `0.8rem`,
-          color: `#fff`,
-        }}
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-        {/* {data[index].number}円 */}
-      </text>
-    );
-  };
+  //   return (
+  //     <text x={x} y={y} fill="#212121"
+  //       textAnchor={x > cx ? "start" : "end"} dominantBaseline="central"
+  //       style={{
+  //         fontSize: `0.8rem`,
+  //         color: `#fff`,
+  //       }}
+  //     >
+  //       {`${(percent * 100).toFixed(0)}%`}
+  //       {/* {data[index].number}円 */}
+  //     </text>
+  //   );
+  // };
 
     const renderColorfulLegendText = (category, item, index) => {
       const { color } = item;

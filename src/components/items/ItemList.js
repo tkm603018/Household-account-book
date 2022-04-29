@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Box, Button, Typography } from '@material-ui/core';
+import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Box, Button } from '@material-ui/core';
 import { DB } from '../../firebase'
 import { BodyContainer } from '../../actions/body';
 

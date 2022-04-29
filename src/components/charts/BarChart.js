@@ -5,7 +5,7 @@ import { Box } from '@material-ui/core';
 const BarChart = ({ items }) => {
   const [data, setData] = React.useState()
 
-  let a = []
+  let a = React.useMemo(() => a, [])
   
   React.useEffect(() => {
     if (!data && items) {
@@ -39,9 +39,9 @@ const BarChart = ({ items }) => {
     return ar && ar.sort((a, b) => a.day - b.day )
   }
   
-  const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
-    return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`${value}`}</text>;
-  };
+  // const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
+  //   return <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>{`${value}`}</text>;
+  // };
 
   const renderToolTipsText = (value) => {
     let a = ''

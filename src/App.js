@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {CssBaseline} from '@material-ui/core'
@@ -10,6 +10,7 @@ import ItemsCreate from './containers/create/ItemsCreate'
 import Charts from './containers/Charts'
 import Header from './components/header/Header'
 import Home from './containers/Home'
+import Graphs from './containers/Graphs'
 import { usePersist } from './components/usePersist'
 
 const drawerWidth = 240;
@@ -115,6 +116,10 @@ const App = () => {
               }
               {bodies && bodies.map((body, i) => (
                 <Route key={i} exact path='/' component={() => Home(body)} />
+              ))
+              }
+              {bodies && bodies.map((body, i) => (
+                <Route key={i} exact path='/graphs' component={() => Graphs(body)} />
               ))
               }
             </Switch>
