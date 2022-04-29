@@ -8,9 +8,7 @@ import {
 } from '@material-ui/core';
 
 import {
-  Mail as MailIcon,
   Menu as MenuIcon,
-  MoveToInbox as InboxIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   AddCircle as AddCircleIcon,

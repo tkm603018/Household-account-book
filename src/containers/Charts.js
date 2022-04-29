@@ -7,7 +7,7 @@ import { BodyContainer } from '../actions/body';
 
 import PieChart from '../components/charts/PieChart'
 import BarChart from '../components/charts/BarChart'
-import LineChart from '../components/charts/LineChart'
+// import LineChart from '../components/charts/LineChart'
 
 const Charts = (body) => {
   return (
